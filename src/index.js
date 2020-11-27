@@ -4,13 +4,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter }  from 'react-router-dom';
 import counterApp from './reducers/index';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
-const store = createStore(counterApp);
+import { createLogger } from 'redux-logger';
+
+const logger = createLogger();
+const store = createStore(counterApp, applyMiddleware(logger));
 
 ReactDOM.render(
   <BrowserRouter>
